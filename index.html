@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Danuja Wijerathna — AI Engineer &amp; Solution Architect</title>
+<meta name="description" content="AI Engineer & Solution Architect building production AI systems on Microsoft Azure — multi-agent orchestration, Agentic RAG, MCP tool integration, and LLMOps.">
+<meta property="og:title" content="Danuja Wijerathna — AI Engineer & Solution Architect">
+<meta property="og:description" content="Production AI systems on Azure — multi-agent orchestration, Agentic RAG, MCP, and LLMOps.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danuja-wije.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23F3C9C4'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' font-family='Georgia,serif' fill='%232B2B33'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Karla:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  html, body { margin: 0; padding: 0; background: #FDFBF8; overflow-x: clip; }
+  body { font-family: 'Karla', sans-serif; color: #2B2B33; }
+  a { color: #D97F6F; text-decoration: none; }
+  a:hover { color: #B95F4F; }
+  * { box-sizing: border-box; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pop { from { opacity: 0; transform: scale(0.9) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes artIn { from { opacity: 0; transform: scale(0.7) rotate(-8deg) translateY(14px); } to { opacity: 0.5; transform: scale(1) rotate(0deg) translateY(0); } }
+  @keyframes artFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-7px) rotate(2.5deg); } }
+
+  .navlink { color: #2B2B33; }
+  .navlink:hover { color: #D97F6F; }
+  .btn-dark { transition: transform 0.15s ease, background 0.2s ease; display: inline-block; padding: 14px 30px; background: #2B2B33; color: #FDFBF8; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn-dark:hover { background: #D97F6F; color: #FDFBF8; }
+  .btn-dark:active { transform: scale(0.94); }
+  .ulink { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding-bottom: 2px; color: #2B2B33; }
+  .ulink:hover { color: #D97F6F; }
+  .work-card { position: relative; overflow: hidden; isolation: isolate; background: #FDFBF8; border: 1px solid #F1EAE2; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .work-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(43,43,51,0.08); }
+  .skill-pill { transition: transform 0.15s ease, border-color 0.2s ease, color 0.2s ease; padding: 12px 24px; border-radius: 999px; background: #FFFFFF; border: 1px solid #F1EAE2; font-size: 15px; font-weight: 600; color: #2B2B33; cursor: default; }
+  .skill-pill:hover { border-color: #D97F6F; color: #D97F6F; }
+  .skill-pill:active { transform: scale(0.94); }
+  .btn-accent { transition: transform 0.15s ease, background 0.2s ease; display: inline-block; padding: 16px 36px; background: #F3C9C4; color: #2B2B33; border-radius: 999px; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn-accent:hover { background: #FDFBF8; color: #2B2B33; }
+  .btn-accent:active { transform: scale(0.94); }
+  .flink { color: #C9C9CF; }
+  .flink:hover { color: #FDFBF8; }
+  #topBtn { position: fixed; bottom: 28px; right: 28px; z-index: 60; width: 52px; height: 52px; border-radius: 50%; border: none; background: #2B2B33; color: #FDFBF8; font-size: 20px; cursor: pointer; box-shadow: 0 10px 26px rgba(43,43,51,0.25); animation: pop 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; transition: background 0.2s ease, transform 0.15s ease; display: none; }
+  #topBtn:hover { background: #D97F6F; }
+  #topBtn:active { transform: scale(0.9); }
+
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; max-width: 1160px; margin: 0 auto; padding: 72px 6vw 96px; }
+  .timeline-row { display: grid; grid-template-columns: 180px 40px 1fr; gap: 0 12px; }
+  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; padding-top: 48px; }
+    .hero-img-col { order: -1; }
+    .timeline-row { grid-template-columns: 24px 1fr; }
+    .timeline-date { grid-column: 2; text-align: left !important; padding-top: 0 !important; margin-bottom: 6px; }
+    .timeline-rail { grid-column: 1; grid-row: 2; }
+    .timeline-body { grid-column: 2; grid-row: 2; }
+    .awards-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 18px; font-size: 12px; }
+  }
+  @media (max-width: 560px) { .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<div style="min-width: 320px;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 20px 6vw; background: rgba(253,251,248,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #F1EAE2;">
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; letter-spacing: 0.02em;">Danuja<span style="color: #D97F6F;">.</span></div>
+    <div class="nav-links">
+      <a class="navlink" href="#about">About</a>
+      <a class="navlink" href="#experience">Experience</a>
+      <a class="navlink" href="#work">Work</a>
+      <a class="navlink" href="#awards">Awards</a>
+      <a class="navlink" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-grid">
+    <div>
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 34px; color: #D97F6F; margin-bottom: 8px;">hello, I'm</div>
+      <h1 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 84px); font-weight: 500; line-height: 1.02; margin: 0 0 20px;">Danuja<br>Wijerathna</h1>
+      <p data-reveal style="font-size: 18px; line-height: 1.7; color: #5B5B63; max-width: 46ch; margin: 0 0 16px;">AI Engineer &amp; Solution Architect building production AI systems on Microsoft Azure — multi-agent orchestration, Agentic RAG, MCP tool integration, and the LLMOps pipelines that ship them safely.</p>
+      <div data-reveal style="display: flex; align-items: center; gap: 16px; margin-top: 28px; flex-wrap: wrap;">
+        <a href="mailto:danujawijerathne45@gmail.com" class="btn-dark">Get in touch</a>
+        <a href="https://www.linkedin.com/in/danuja-wijerathna/" target="_blank" rel="noopener" class="ulink" style="border-bottom: 2px solid #F3C9C4;">LinkedIn</a>
+        <a href="https://github.com/danuja-wije" target="_blank" rel="noopener" class="ulink" style="border-bottom: 2px solid #CFE5DA;">GitHub</a>
+        <a href="Danuja_Wijerathna_Resume.pdf" target="_blank" class="ulink" style="border-bottom: 2px solid #F6E3B4;">Resume</a>
+      </div>
+      <div data-reveal style="display: flex; gap: 40px; margin-top: 48px;">
+        <div><div style="font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600;">5+</div><div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8B8B92;">Years in AI</div></div>
+        <div><div style="font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600;">7</div><div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8B8B92;">Awards &amp; honors</div></div>
+        <div><div style="font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600;">MSc</div><div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8B8B92;">Applied AI · Westminster</div></div>
+      </div>
+    </div>
+    <div class="hero-img-col" style="position: relative; display: flex; justify-content: center;">
+      <div data-reveal="float" data-float="6s" style="position: absolute; top: -24px; right: 8%; width: 120px; height: 120px; border-radius: 50%; background: #CFE5DA; opacity: 0.7;"></div>
+      <div data-reveal="float" data-float="7s" style="position: absolute; bottom: -20px; left: 4%; width: 72px; height: 72px; border-radius: 50%; background: #F6E3B4; opacity: 0.8;"></div>
+      <div data-reveal="pop" style="position: relative; width: min(420px, 90%);">
+        <div style="position: absolute; left: 5%; right: 5%; bottom: 0; height: 78%; border-radius: 999px 999px 24px 24px; background: #F3C9C4;"></div>
+        <img src="assets/danuja-hero-cutout.png" alt="Danuja Wijerathna speaking" style="position: relative; width: 100%; display: block;">
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" style="background: #FFFFFF; border-top: 1px solid #F1EAE2; border-bottom: 1px solid #F1EAE2; padding: 88px 6vw;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">about me</div>
+      <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 24px;">Responsible AI, built for the real world</h2>
+      <p data-reveal style="font-size: 17px; line-height: 1.85; color: #5B5B63; margin: 0;">I design enterprise AI systems end-to-end — from multi-agent architectures and Agentic RAG over enterprise data to the LLMOps pipelines and Responsible AI guardrails that keep them running safely. Increasingly working as a solution architect: target architectures, build-vs-buy decisions, and design reviews on cross-team AI initiatives. Currently reading for an MSc in Applied Artificial Intelligence at the University of Westminster, and speaking about AI transformation to student and professional audiences across Sri Lanka.</p>
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 32px;">
+        <span data-reveal style="padding: 8px 18px; border-radius: 999px; background: #F3C9C4; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;">AI Governance</span>
+        <span data-reveal style="padding: 8px 18px; border-radius: 999px; background: #CFE5DA; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;">Multi-Agent Systems</span>
+        <span data-reveal style="padding: 8px 18px; border-radius: 999px; background: #F6E3B4; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;">Generative AI</span>
+        <span data-reveal style="padding: 8px 18px; border-radius: 999px; background: #F3C9C4; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;">MLOps</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" style="max-width: 1000px; margin: 0 auto; padding: 88px 6vw;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">my journey</div>
+      <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 0;">Experience</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0;" id="timeline"></div>
+  </section>
+
+  <!-- WORK HIGHLIGHTS -->
+  <section id="work" style="background: #FFFFFF; border-top: 1px solid #F1EAE2; border-bottom: 1px solid #F1EAE2; padding: 88px 6vw;">
+    <div style="max-width: 1160px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">from research to production</div>
+        <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 0;">Selected Work</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;" id="workGrid"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="max-width: 1000px; margin: 0 auto; padding: 88px 6vw;">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">what I work with</div>
+      <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 0;">Skills</h2>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;" id="skillWrap"></div>
+  </section>
+
+  <!-- AWARDS & SPEAKING -->
+  <section id="awards" style="background: #CFE5DA33; border-top: 1px solid #F1EAE2; padding: 88px 6vw;">
+    <div style="max-width: 1160px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">good vibes</div>
+        <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 0;">Awards &amp; Speaking</h2>
+      </div>
+      <div class="awards-grid">
+        <div style="display: flex; flex-direction: column; gap: 20px;" id="awardList"></div>
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div data-reveal="pop" style="position: relative;">
+            <div style="border-radius: 20px; overflow: hidden; border: 8px solid #FFFFFF; box-shadow: 0 14px 36px rgba(43,43,51,0.10);">
+              <img src="assets/danuja-award.png" alt="Receiving the SLASSCOM National Ingenuity Award 2022" style="width: 100%; display: block; aspect-ratio: 16 / 11; object-fit: cover;">
+            </div>
+            <div style="position: absolute; bottom: -12px; left: 20px; background: #F6E3B4; padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em;">SLASSCOM Ingenuity Awards · 2022</div>
+          </div>
+          <div data-reveal="pop" style="position: relative; margin-left: 8%;">
+            <div style="border-radius: 20px; overflow: hidden; border: 8px solid #FFFFFF; box-shadow: 0 14px 36px rgba(43,43,51,0.10);">
+              <img src="assets/danuja-speaking.png" alt="Speaking about AI transformation" style="width: 100%; display: block; aspect-ratio: 16 / 11; object-fit: cover;">
+            </div>
+            <div style="position: absolute; bottom: -12px; left: 20px; background: #F3C9C4; padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em;">Guest speaker · AI &amp; your future</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" style="max-width: 1000px; margin: 0 auto; padding: 88px 6vw;">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 30px; color: #D97F6F;">always learning</div>
+      <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; margin: 8px 0 0;">Education</h2>
+    </div>
+    <div class="edu-grid">
+      <div data-reveal style="background: #FFFFFF; border: 1px solid #F1EAE2; border-radius: 20px; padding: 32px;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #D97F6F; margin-bottom: 10px;">2026 — Present</div>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin: 0 0 6px;">MSc in Applied Artificial Intelligence</h3>
+        <div style="font-size: 15px; color: #5B5B63;">University of Westminster, UK</div>
+      </div>
+      <div data-reveal style="background: #FFFFFF; border: 1px solid #F1EAE2; border-radius: 20px; padding: 32px;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8B8B92; margin-bottom: 10px;">2019 – 2023</div>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin: 0 0 6px;">BSc (Hons) IT — Data Science</h3>
+        <div style="font-size: 15px; color: #5B5B63;">Sri Lanka Institute of Information Technology (SLIIT)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" style="background: #2B2B33; color: #FDFBF8; padding: 96px 6vw 48px;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="font-family: 'Caveat', cursive; font-size: 32px; color: #F3C9C4;">say hello</div>
+      <h2 data-reveal style="font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 500; margin: 10px 0 24px; color: #FDFBF8;">Let's build something trustworthy.</h2>
+      <a href="mailto:danujawijerathne45@gmail.com" data-reveal class="btn-accent">danujawijerathne45@gmail.com</a>
+      <div data-reveal style="display: flex; justify-content: center; gap: 28px; margin-top: 32px; font-size: 14px; font-weight: 600; flex-wrap: wrap;">
+        <a class="flink" href="tel:+94767318789">+94 767 318 789</a>
+        <a class="flink" href="https://www.linkedin.com/in/danuja-wijerathna/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="flink" href="https://github.com/danuja-wije" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div style="margin-top: 64px; padding-top: 24px; border-top: 1px solid #43434B; font-size: 13px; color: #8B8B92;">Peradeniya, Sri Lanka · © 2026 Danuja Wijerathna</div>
+    </div>
+  </footer>
+
+  <button id="topBtn" aria-label="Back to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+</div>
+
+<script>
+(function () {
+  var accent1 = '#F3C9C4', accent2 = '#CFE5DA', accent3 = '#F6E3B4';
+
+  /* ---------- data ---------- */
+  var jobs = [
+    {
+      period: 'Oct 2025 — Present', dot: accent1,
+      title: 'Senior AI Engineer', company: 'IFS R&D International · Colombo',
+      points: [
+        'Architected multi-agent AI systems for intelligent decision-making using Azure AI Foundry and Microsoft Agent Framework.',
+        'Built advanced RAG pipelines — Graph RAG and Agentic RAG with conversation history management.',
+        'Created AI-powered developer tools (code analyzer, test script generators), reducing QA workload by 25 hours/week.',
+        'Built time series forecasting for employee utilization with 87% prediction accuracy.',
+        'Designed MCP servers for enterprise integration and defined MLOps architecture with IaC (Terraform, Bicep) and CI/CD across multi-subscription Azure.'
+      ]
+    },
+    {
+      period: 'Sep 2023 — Sep 2025', dot: accent2,
+      title: 'Data Scientist', company: 'IFS R&D International · Colombo',
+      points: [
+        'Designed optimized semantic models in Microsoft Fabric for large-scale datasets.',
+        'Built customer churn prediction with deep learning (ANN) at 89% accuracy.',
+        'Migrated legacy Oracle databases to modern Azure architecture.',
+        'Implemented GDPR-compliant AI-based employee performance tracking with row-level security (Power Apps, Power BI).'
+      ]
+    },
+    {
+      period: 'Dec 2022 — Aug 2023', dot: accent3,
+      title: 'Data Engineer', company: 'AI Palette · Singapore',
+      points: [
+        'Built real-time data processing solutions, significantly improving operational efficiency.',
+        'Designed an intelligent analytics layer for advanced insight into business data and customer behaviour.',
+        'Built robust ETL for loading CSV/Parquet into data lakes and warehouses.'
+      ]
+    },
+    {
+      period: 'Dec 2021 — Dec 2022', dot: accent1,
+      title: 'Data Science Intern', company: 'IFS R&D International · Colombo',
+      points: [
+        'Automated the Global Customer Support process, reducing manual workload and response times.',
+        'Built a customer solution prediction model with TensorFlow for proactive support.'
+      ]
+    }
+  ];
+
+  var works = [
+    { glyph: 'S', color: accent1, title: 'ServiceNow MCP Server', badge: 'New', desc: 'MCP server connecting ServiceNow to AI agents — letting agents query records, manage incidents, and automate ITSM workflows through natural language.', tags: 'MCP · ServiceNow · Agentic AI' },
+    { glyph: 'A', color: accent2, title: 'Deep Sentiment Analysis — ServiceNow', badge: 'New', desc: "Graph-based deep sentiment model within the ServiceNow project — instead of scoring a single text field, it maps the full customer interaction graph to pinpoint the customer's actual sentiment along with its root cause.", tags: 'Graph Deep Learning · NLP · ServiceNow' },
+    { glyph: 'B', color: accent3, title: 'AI Power BI Report Builder', badge: 'New', desc: 'Desktop app for building Power BI reports through natural-language chat — an orchestrator routes intent to six specialist agents, with schema-validated crash-safe writes and ~95% lower token usage on edits.', tags: 'Electron · Multi-Agent · MCP' },
+    { glyph: 'H', color: accent1, title: 'Project Helix — Conversational BI', desc: '"Ask Helix" lets enterprise leadership query certified Power BI models in natural language — live DAX, ML insights, and glossary context streamed with inline charts, behind a PII-masking firewall.', tags: 'Claude Agent SDK · Power BI · Fabric' },
+    { glyph: 'V', color: accent2, title: 'Virtual Resource Manager', desc: 'Multi-agent assistant matching employees to project requests across 854 profiles — hybrid vector + keyword search and a 10-dimensional configurable scoring engine with parallel specialist agents.', tags: 'Azure AI Search · FastAPI · Agents' },
+    { glyph: 'L', color: accent3, title: 'Log Analyzer — AI Root Cause Analysis', desc: 'An 11-agent pipeline digesting tens of millions of log lines per incident into executive-grade root-cause reports, with every claim cited back to the underlying logs.', tags: 'Agent Framework · DuckDB · RCA' },
+    { glyph: 'J', color: accent1, title: 'Cloud Performance Tester', desc: 'Turns plain-English descriptions of enterprise cloud workflows into runnable JMeter performance tests — the LLM authors, repairs, and explains generated scripts.', tags: 'Spring Boot · Azure OpenAI · JMeter' }
+  ];
+
+  var skills = ['Agentic AI', 'Multi-Agent Orchestration', 'Generative AI', 'RAG / Graph RAG', 'Model Context Protocol', 'Azure AI Foundry', 'Azure AI Search', 'Microsoft Fabric', 'LangChain / LangGraph', 'Claude Agent SDK', 'MLOps / LLMOps', 'Azure Databricks', 'Azure Data Factory', 'MLflow', 'Terraform / Bicep', 'Python / TypeScript', 'Deep Learning', 'NLP', 'Power BI', 'Solution Architecture', 'Responsible AI Governance'];
+
+  var awards = [
+    { color: accent1, title: 'IFS High-Performance Individual', detail: "Selected for the company's High-Performance Team · 2025" },
+    { color: accent3, title: 'IFS Aspire Leadership Programme', detail: 'Nominated for performance-based leadership development · 2025' },
+    { color: accent1, title: 'NBQSA National ICT Award — Finalist', detail: 'Top 5 inter-university in Sri Lanka · 2023' },
+    { color: accent2, title: 'SLASSCOM National Ingenuity Awards — Winner', detail: 'Best Innovative Regional Project · 2022' },
+    { color: accent3, title: 'STEMUP Hack AI — Finalist', detail: 'Top 5 inter-university in Sri Lanka · 2022' },
+    { color: accent1, title: "Dean's List Award", detail: 'SLIIT · 2021' },
+    { color: accent2, title: 'Google Kick Start & Hash Code', detail: 'Global competitive programming · 2021' }
+  ];
+
+  /* ---------- card art (thematic SVG backdrops) ---------- */
+  var svgArt = function (inner) { return 'url("data:image/svg+xml,' + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'>" + inner + '</svg>') + '")'; };
+  var ln = function (x1, y1, x2, y2, c) { return "<line x1='" + x1 + "' y1='" + y1 + "' x2='" + x2 + "' y2='" + y2 + "' stroke='" + c + "' stroke-width='2'/>"; };
+  var dot = function (x, y, r, c) { return "<circle cx='" + x + "' cy='" + y + "' r='" + r + "' fill='" + c + "'/>"; };
+  var box = function (x, y, s, c) { return "<rect x='" + x + "' y='" + y + "' width='" + s + "' height='" + s + "' rx='8' fill='none' stroke='" + c + "' stroke-width='2'/>"; };
+
+  var artMcp = svgArt(
+    box(14, 56, 30, accent1) + box(66, 22, 30, accent2) + box(112, 76, 34, accent3) +
+    ln(44, 71, 66, 42, accent2) + ln(96, 42, 122, 76, accent3) + ln(44, 74, 112, 92, accent1) +
+    dot(29, 71, 4, accent1) + dot(81, 37, 4, accent2) + dot(129, 93, 4, accent3)
+  );
+  var artGraph = svgArt(
+    ln(28, 44, 86, 18, accent2) + ln(86, 18, 140, 52, accent2) + ln(28, 44, 58, 96, accent1) +
+    ln(58, 96, 118, 124, accent3) + ln(140, 52, 118, 124, accent2) + ln(58, 96, 18, 128, accent1) + ln(86, 18, 58, 96, accent3) +
+    dot(28, 44, 7, accent1) + dot(86, 18, 5, accent2) + dot(140, 52, 6, accent3) + dot(58, 96, 8, accent2) + dot(118, 124, 5, accent1) + dot(18, 128, 4, accent3)
+  );
+  var artBars = svgArt(
+    "<rect x='24' y='96' width='18' height='44' rx='5' fill='" + accent1 + "'/>" +
+    "<rect x='54' y='64' width='18' height='76' rx='5' fill='" + accent2 + "'/>" +
+    "<rect x='84' y='84' width='18' height='56' rx='5' fill='" + accent3 + "'/>" +
+    "<rect x='114' y='36' width='18' height='104' rx='5' fill='none' stroke='" + accent1 + "' stroke-width='2'/>" +
+    dot(123, 22, 5, accent2)
+  );
+  var artHelix = (function () {
+    var xs = [14, 42, 70, 98, 126, 154];
+    var y1 = [40, 56, 64, 56, 40, 26];
+    var s = '';
+    xs.forEach(function (x, i) {
+      var yTop = y1[i], yBot = 150 - y1[i];
+      s += ln(x, yTop, x, yBot, i % 2 ? accent2 : accent1);
+      s += dot(x, yTop, 6, i % 2 ? accent1 : accent3) + dot(x, yBot, 6, i % 2 ? accent3 : accent2);
+    });
+    return svgArt(s);
+  })();
+  var artPeople = (function () {
+    var s = '';
+    [34, 80, 126].forEach(function (x, i) { [34, 80, 126].forEach(function (y, j) {
+      s += dot(x, y, 8, [accent1, accent2, accent3][(i + j) % 3]);
+    }); });
+    s += "<circle cx='80' cy='80' r='16' fill='none' stroke='" + accent1 + "' stroke-width='2'/>";
+    return svgArt(s);
+  })();
+  var artLogs = svgArt(
+    "<rect x='16' y='26' width='96' height='8' rx='4' fill='" + accent1 + "'/>" +
+    "<rect x='16' y='52' width='128' height='8' rx='4' fill='" + accent2 + "'/>" +
+    "<rect x='16' y='78' width='72' height='8' rx='4' fill='" + accent3 + "'/>" +
+    "<rect x='16' y='104' width='108' height='8' rx='4' fill='" + accent1 + "'/>" +
+    "<circle cx='118' cy='112' r='18' fill='none' stroke='" + accent2 + "' stroke-width='3'/>" +
+    "<line x1='131' y1='125' x2='146' y2='140' stroke='" + accent2 + "' stroke-width='4'/>"
+  );
+  var artGauge = svgArt(
+    "<circle cx='80' cy='88' r='52' fill='none' stroke='" + accent1 + "' stroke-width='9' stroke-dasharray='215 400' transform='rotate(125 80 88)'/>" +
+    ln(80, 88, 46, 56, accent2) + dot(80, 88, 8, accent2) + dot(80, 24, 4, accent3) + dot(140, 74, 4, accent3)
+  );
+  var arts = [artMcp, artGraph, artBars, artHelix, artPeople, artLogs, artGauge];
+
+  /* ---------- render helpers ---------- */
+  function el(tag, attrs, children) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'style') e.setAttribute('style', attrs[k]);
+      else if (k === 'text') e.textContent = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+
+  /* experience timeline */
+  var timeline = document.getElementById('timeline');
+  jobs.forEach(function (job) {
+    var row = el('div', { 'data-reveal': '', class: 'timeline-row' });
+    var date = el('div', { class: 'timeline-date', style: 'text-align: right; padding-top: 4px;' }, [
+      el('div', { style: 'font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8B8B92;', text: job.period })
+    ]);
+    var rail = el('div', { class: 'timeline-rail', style: 'display: flex; flex-direction: column; align-items: center;' }, [
+      el('div', { style: 'width: 14px; height: 14px; border-radius: 50%; background: ' + job.dot + '; border: 3px solid #FDFBF8; box-shadow: 0 0 0 2px #E8DFD5; flex-shrink: 0; margin-top: 6px;' }),
+      el('div', { style: 'width: 2px; flex: 1; background: #E8DFD5;' })
+    ]);
+    var ul = el('ul', { style: 'margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px;' });
+    job.points.forEach(function (pt) {
+      ul.appendChild(el('li', { style: 'font-size: 15px; line-height: 1.65; color: #5B5B63;', text: pt }));
+    });
+    var body = el('div', { class: 'timeline-body', style: 'padding-bottom: 48px;' }, [
+      el('h3', { style: "font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; margin: 0 0 2px;", text: job.title }),
+      el('div', { style: 'font-size: 14px; font-weight: 700; color: #D97F6F; margin-bottom: 14px;', text: job.company }),
+      ul
+    ]);
+    row.appendChild(date); row.appendChild(rail); row.appendChild(body);
+    timeline.appendChild(row);
+  });
+
+  /* work cards */
+  var workGrid = document.getElementById('workGrid');
+  works.forEach(function (w, i) {
+    var card = el('div', { 'data-reveal': '', 'data-art-card': '', class: 'work-card' });
+    card.appendChild(el('div', { 'data-art': '', style: 'position: absolute; z-index: -1; top: -8px; right: -12px; width: 150px; height: 150px; background-image: ' + arts[i % arts.length] + '; background-repeat: no-repeat; background-size: contain; opacity: 0; transition: opacity 0.35s ease, transform 0.35s ease; transform: scale(0.94); pointer-events: none;' }));
+    var head = el('div', { style: 'display: flex; align-items: center; justify-content: space-between;' }, [
+      el('div', { style: "width: 44px; height: 44px; border-radius: 50%; background: " + w.color + "; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;", text: w.glyph })
+    ]);
+    if (w.badge) head.appendChild(el('span', { style: 'padding: 5px 14px; border-radius: 999px; background: #2B2B33; color: #FDFBF8; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;', text: w.badge }));
+    card.appendChild(head);
+    card.appendChild(el('h3', { style: "font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; margin: 8px 0 0;", text: w.title }));
+    card.appendChild(el('p', { style: 'font-size: 15px; line-height: 1.65; color: #5B5B63; margin: 0;', text: w.desc }));
+    card.appendChild(el('div', { style: 'margin-top: auto; padding-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #A8A8AE;', text: w.tags }));
+    workGrid.appendChild(card);
+  });
+
+  /* skills */
+  var skillWrap = document.getElementById('skillWrap');
+  skills.forEach(function (s) {
+    skillWrap.appendChild(el('span', { 'data-reveal': '', class: 'skill-pill', text: s }));
+  });
+
+  /* awards */
+  var awardList = document.getElementById('awardList');
+  awards.forEach(function (a) {
+    awardList.appendChild(el('div', { 'data-reveal': '', style: 'display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border-radius: 16px; padding: 20px 22px; border: 1px solid #F1EAE2;' }, [
+      el('div', { style: 'width: 10px; height: 10px; border-radius: 50%; background: ' + a.color + '; margin-top: 7px; flex-shrink: 0;' }),
+      el('div', {}, [
+        el('div', { style: 'font-weight: 700; font-size: 16px;', text: a.title }),
+        el('div', { style: 'font-size: 14px; color: #8B8B92; margin-top: 2px;', text: a.detail })
+      ])
+    ]));
+  });
+
+  /* ---------- back-to-top ---------- */
+  var topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', function () {
+    topBtn.style.display = window.scrollY > 500 ? 'block' : 'none';
+  }, { passive: true });
+
+  /* ---------- reveal animations ---------- */
+  var ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  var counts = new Map();
+  els.forEach(function (elm) {
+    var p = elm.parentElement;
+    var i = counts.get(p) || 0;
+    counts.set(p, i + 1);
+    elm.__revealDelay = Math.min(i * 0.09, 0.5);
+    elm.style.opacity = '0';
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var elm = en.target;
+      io.unobserve(elm);
+      var kind = elm.getAttribute('data-reveal');
+      var d = elm.__revealDelay || 0;
+      if (kind === 'float') {
+        var dur = elm.getAttribute('data-float') || '6s';
+        elm.style.animation = 'pop 0.9s ' + ease + ' ' + d + 's both, floaty ' + dur + ' ease-in-out ' + (d + 0.9) + 's infinite';
+        return;
+      }
+      var name = kind === 'pop' ? 'pop' : 'rise';
+      elm.style.animation = name + ' 0.8s ' + ease + ' ' + d + 's both';
+      elm.addEventListener('animationend', function () { elm.style.animation = ''; elm.style.opacity = ''; }, { once: true });
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+  els.forEach(function (elm) { io.observe(elm); });
+
+  /* ---------- work card hover art ---------- */
+  document.querySelectorAll('[data-art-card]').forEach(function (card) {
+    var art = card.querySelector('[data-art]');
+    if (!art) return;
+    card.addEventListener('mouseenter', function () {
+      art.style.opacity = '0.5';
+      art.style.animation = 'artIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both, artFloat 5s ease-in-out 0.55s infinite';
+    });
+    card.addEventListener('mouseleave', function () {
+      art.style.animation = '';
+      art.style.opacity = '0';
+    });
+  });
+})();
+</script>
+</body>
+</html>
