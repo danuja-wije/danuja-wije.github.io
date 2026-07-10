@@ -579,10 +579,11 @@
   /* ---------- project detail pages + hash router ---------- */
   var projectPage = document.getElementById('projectPage');
   var siteMain = document.getElementById('siteMain');
-  var visitedMain = false;
+  var onDetail = false;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
   function goBack() {
-    if (visitedMain && history.length > 1) history.back();
+    if (location.hash === '#work') route();
     else location.hash = '#work';
   }
 
@@ -644,16 +645,17 @@
       projectPage.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'instant' });
       document.title = w.title + ' — Danuja Wijerathna';
+      onDetail = true;
     } else {
+      var fromDetail = onDetail;
+      onDetail = false;
       projectPage.style.display = 'none';
       siteMain.style.display = '';
       document.title = 'Danuja Wijerathna — AI Engineer & Solution Architect';
-      visitedMain = true;
       var id = location.hash.replace('#', '');
-      if (id) {
-        var target = document.getElementById(id);
-        if (target) target.scrollIntoView();
-      }
+      var target = id ? document.getElementById(id) : null;
+      if (target) target.scrollIntoView({ behavior: fromDetail ? 'instant' : 'smooth', block: 'start' });
+      else if (fromDetail) window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }
   window.addEventListener('hashchange', route);
