@@ -286,6 +286,42 @@
       desc: 'Turns ServiceNow into an AI-operable toolset over a knowledge graph, with multi-hop root-cause analysis and systemic-pattern discovery.',
       tags: 'MCP · Graph Database · Foundry IQ',
       stack: ['Model Context Protocol (MCP)', 'ServiceNow REST APIs', 'Graph Database', 'Azure AI Foundry IQ', 'K-Means Clustering', 'Community Detection', 'Graph Deep Learning', 'NLP', 'Agentic AI'],
+      article: [
+        { p: "Every enterprise I've worked with has the same quiet problem: the answers to their most expensive support questions are already sitting in ServiceNow. They're just scattered across thousands of tickets that nobody has time to connect. An engineer resolves an incident, closes it, and moves on. Three weeks later a teammate hits the same root cause and starts from zero. The knowledge exists — the connections don't." },
+        { p: "This project started with a simple question: what if an AI agent could operate ServiceNow the way a veteran support lead does — not just searching tickets, but actually working the platform and seeing how everything relates?" },
+        { h: 'The idea: make ServiceNow speak agent' },
+        { p: "The first decision was the most important one: build it on the Model Context Protocol. MCP is an open standard that lets any compliant AI agent discover and call tools — so instead of wiring one chatbot to one API, I built a governed toolset that any agent framework can plug into." },
+        { p: "The MCP server exposes the core ITSM surface as tools: querying records across ServiceNow tables, managing the full incident lifecycle — create, update, triage, resolve — and automating multi-step workflows from a single conversational request. Every tool call is governed and auditable, which matters enormously in an enterprise: you want an agent that can act, and a paper trail that proves exactly what it did." },
+        { quote: 'Natural language in, governed ITSM actions out — with an audit trail for every step.' },
+        { svg: 'architecture', caption: 'The high-level architecture: any MCP-compliant agent operates ServiceNow through governed tools, grounded by a knowledge graph and a unified retrieval layer.' },
+        { h: 'Teaching agents to see connections' },
+        { p: "A flat query can tell you what a ticket says. It can't tell you what a ticket means. The real intelligence in this platform comes from modeling the ServiceNow estate as a knowledge graph: incidents, cases, customer interactions, and the relationships between them, stored in a graph database built for traversal." },
+        { p: "That unlocks multi-hop reasoning. When an agent investigates an incident, it doesn't just read that one record — it walks the graph. This incident touches the same configuration as a change request from last month, which correlates with three older incidents, which all trace back to one underlying cause. Those chains are invisible to keyword search; a graph walks them in milliseconds." },
+        { svg: 'multihop', caption: 'Multi-hop traversal in action: root-cause analysis follows the relationship chain behind an incident instead of summarising a single record.' },
+        { p: "This is what powers the platform's root cause analysis. Instead of an LLM summarising one ticket and guessing, the RCA is grounded in the actual chain of connected records — every claim traceable back to something real in the graph." },
+        { h: "Finding the patterns humans can't" },
+        { p: "Individual tickets get handled. Systemic problems hide. When thousands of incidents flow through a support organisation, no human can step back far enough to see that four hundred of them are really the same problem wearing different clothes." },
+        { p: "So I added an unsupervised intelligence layer. K-Means clustering groups incidents by similarity, exposing recurring problem classes across the corpus. And community detection runs over the interaction graph itself, finding dense neighbourhoods of related records — clusters of tickets, customers, and interactions that are structurally entangled even when their text looks different." },
+        { svg: 'patterns', caption: 'Two lenses on the same corpus: K-Means clusters incidents by similarity, while community detection finds structurally dense neighbourhoods in the interaction graph.' },
+        { p: "Together they turn a queue of individually-handled tickets into a ranked map of systemic issues — the difference between whack-a-mole support and actually fixing the things that generate tickets." },
+        { h: 'One retrieval endpoint to ground them all' },
+        { p: "Agents also need to read — knowledge articles, past incidents, related records — and that retrieval layer can quietly become a mess of per-index integrations. I used Azure AI Foundry IQ as a multi-index wrapper: multiple Azure AI Search indexes registered as knowledge sources behind one governed, MCP-compatible retrieval endpoint." },
+        { p: "Foundry IQ handles the agentic query planning and semantic ranking, federating every search across all sources. The agent asks one question; the knowledge base decides which indexes to consult and how to rank what comes back. No per-index plumbing, and governance lives in one place." },
+        { svg: 'foundryiq', caption: 'Foundry IQ wraps multiple RAG indexes into a single governed retrieval endpoint with query planning and semantic ranking.' },
+        { h: 'Reading the customer, not the message' },
+        { p: "The last piece is my favourite. Conventional sentiment analysis scores a single text field — one angry comment, one score. But customers don't experience support one message at a time; they experience the whole relationship." },
+        { p: "The graph-based deep sentiment model maps the full customer interaction graph — every ticket, comment, and escalation across the history — to pinpoint the customer's actual sentiment state and trace it to the root cause producing it. Instead of a dashboard that says 'this customer is unhappy', support teams get 'this customer is unhappy because of the recurring sync failures behind these five tickets'. A score you can act on." },
+        { h: 'The roadmap' },
+        { list: [
+          'Phase 1 — Agentic foundation: the MCP server itself. Record queries, incident lifecycle management, and multi-step ITSM workflow automation as governed, auditable tools.',
+          'Phase 2 — The knowledge graph: modeling incidents, cases, and interactions in a graph database; multi-hop traversal; graph-grounded root cause analysis.',
+          'Phase 3 — Unsupervised intelligence: K-Means clustering over the incident corpus and community detection over the interaction graph, surfacing systemic issues.',
+          'Phase 4 — Understanding people: the graph-based deep sentiment model, plus Foundry IQ unifying every retrieval index behind one endpoint.',
+          "What's next: closing the loop — feeding discovered problem clusters and RCAs back into proactive workflows, so the platform doesn't just explain incidents but helps prevent the next ones."
+        ] },
+        { h: 'What I learned' },
+        { p: "Three things stuck with me. First, governance is a feature, not a tax — the audit trail is what makes an enterprise actually willing to let agents act. Second, graphs beat flat queries the moment your questions involve 'why': the relationship structure is where the answers live. And third, betting on an open standard paid off — because the whole platform speaks MCP, it isn't married to any single agent framework, and every new MCP-compatible client that ships becomes a new front door to ServiceNow for free." }
+      ],
       detail: [
         'Designed and built an MCP server that exposes ServiceNow as a governed toolset for AI agents: record queries across ServiceNow tables, full incident lifecycle management (create, update, triage, resolve), and multi-step ITSM workflow automation from a single conversational request. Pluggable into any MCP-compliant agent framework with governed, auditable tool access.',
         'Modeled the ServiceNow estate as a knowledge graph in a graph database: incidents, cases, customer interactions, and their relationships. Agents reason over connected records through multi-hop traversal instead of isolated table lookups, surfacing links between tickets that flat queries can never see.',
@@ -575,6 +611,107 @@
     });
   });
 
+  /* ---------- article diagrams (theme-colored inline SVG) ---------- */
+  var DG = { ink: '#2B2B33', gray: '#5B5B63', soft: '#8B8B92', coral: '#D97F6F', line: '#E8DFD5', card: '#FFFFFF', bd: '#F1EAE2' };
+  function dgArrow(x1, y1, x2, y2, color) {
+    var a = Math.atan2(y2 - y1, x2 - x1), s = 8;
+    var hx = x2 - 10 * Math.cos(a), hy = y2 - 10 * Math.sin(a);
+    return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + hx + '" y2="' + hy + '" stroke="' + color + '" stroke-width="2"/>' +
+      '<polygon points="' + x2 + ',' + y2 + ' ' + (x2 - s * Math.cos(a - 0.4)) + ',' + (y2 - s * Math.sin(a - 0.4)) + ' ' + (x2 - s * Math.cos(a + 0.4)) + ',' + (y2 - s * Math.sin(a + 0.4)) + '" fill="' + color + '"/>';
+  }
+  function dgBox(x, y, w, h, fill, stroke) {
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="14" fill="' + fill + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="2"' : '') + '/>';
+  }
+  function dgText(x, y, txt, size, color, weight, anchor) {
+    return '<text x="' + x + '" y="' + y + '" font-family="Karla, sans-serif" font-size="' + size + '" fill="' + color + '"' + (weight ? ' font-weight="' + weight + '"' : '') + ' text-anchor="' + (anchor || 'middle') + '">' + txt + '</text>';
+  }
+  var diagrams = {};
+  diagrams.architecture = '<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">' +
+    dgBox(30, 155, 160, 90, accent2) + dgText(110, 195, 'AI Agent', 15, DG.ink, 700) + dgText(110, 216, 'any MCP-compliant client', 11, DG.gray) +
+    dgArrow(190, 200, 253, 200, DG.coral) + dgText(222, 188, 'MCP', 11, DG.coral, 700) +
+    dgBox(255, 125, 230, 150, DG.card, DG.coral) + dgText(370, 155, 'ServiceNow MCP Server', 15, DG.ink, 700) +
+    dgText(275, 183, '• record queries', 12, DG.gray, null, 'start') + dgText(275, 204, '• incident lifecycle', 12, DG.gray, null, 'start') +
+    dgText(275, 225, '• workflow automation', 12, DG.gray, null, 'start') + dgText(370, 258, 'governed · auditable', 11, DG.coral, 700) +
+    dgBox(560, 40, 170, 76, accent1) + dgText(645, 72, 'ServiceNow', 14, DG.ink, 700) + dgText(645, 92, 'REST APIs', 11, DG.gray) +
+    dgBox(560, 162, 170, 76, accent3) + dgText(645, 194, 'Knowledge Graph', 14, DG.ink, 700) + dgText(645, 214, 'multi-hop traversal', 11, DG.gray) +
+    dgBox(560, 284, 170, 76, accent2) + dgText(645, 316, 'Foundry IQ', 14, DG.ink, 700) + dgText(645, 336, 'multi-index RAG', 11, DG.gray) +
+    dgArrow(485, 170, 558, 90, DG.soft) + dgArrow(485, 200, 558, 200, DG.soft) + dgArrow(485, 232, 558, 312, DG.soft) +
+    '</svg>';
+  diagrams.multihop = (function () {
+    function node(x, y, label, sub, fill, tcol) {
+      return '<circle cx="' + x + '" cy="' + y + '" r="40" fill="' + fill + '"/>' +
+        dgText(x, y + (sub ? -1 : 5), label, 12.5, tcol, 700) + (sub ? dgText(x, y + 15, sub, 10, tcol) : '');
+    }
+    function step(x, y, n) {
+      return '<circle cx="' + x + '" cy="' + y + '" r="11" fill="' + DG.coral + '"/>' + dgText(x, y + 4, n, 11, '#FDFBF8', 700);
+    }
+    return '<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">' +
+      '<line x1="145" y1="163" x2="268" y2="115" stroke="' + DG.coral + '" stroke-width="2.5"/>' +
+      '<line x1="340" y1="112" x2="455" y2="140" stroke="' + DG.coral + '" stroke-width="2.5"/>' +
+      '<line x1="525" y1="170" x2="618" y2="222" stroke="' + DG.coral + '" stroke-width="2.5"/>' +
+      '<line x1="130" y1="215" x2="230" y2="262" stroke="' + DG.line + '" stroke-width="2"/>' +
+      '<line x1="520" y1="180" x2="465" y2="272" stroke="' + DG.line + '" stroke-width="2"/>' +
+      node(110, 180, 'INC-4021', 'today', DG.coral, '#FDFBF8') +
+      node(305, 100, 'CHG-88', 'change', accent1, DG.ink) +
+      node(492, 152, 'INC-3312', '3 weeks ago', accent1, DG.ink) +
+      node(655, 245, 'Root cause', 'config drift', DG.ink, '#FDFBF8') +
+      node(262, 285, 'Customer A', null, accent2, DG.ink) +
+      node(438, 300, 'KB-102', null, accent3, DG.ink) +
+      step(205, 138, '1') + step(398, 124, '2') + step(572, 196, '3') +
+      dgText(380, 30, 'agent walks the relationship chain — hop by hop — to the origin', 12.5, DG.gray) +
+      '</svg>';
+  })();
+  diagrams.patterns = (function () {
+    var s = '<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">';
+    s += dgBox(20, 24, 348, 292, DG.card, DG.bd) + dgText(194, 52, 'K-Means clustering', 14, DG.ink, 700) + dgText(194, 70, 'incidents grouped by similarity', 11, DG.gray);
+    var blobs = [
+      { cx: 110, cy: 150, c: accent1, pts: [[92,132],[120,124],[136,150],[104,166],[124,170],[88,154],[112,146]] },
+      { cx: 262, cy: 140, c: accent2, pts: [[246,122],[276,128],[284,152],[252,158],[266,144],[240,144]] },
+      { cx: 186, cy: 246, c: accent3, pts: [[168,230],[200,226],[212,250],[178,262],[196,246],[162,250]] }
+    ];
+    blobs.forEach(function (b) {
+      s += '<ellipse cx="' + b.cx + '" cy="' + b.cy + '" rx="62" ry="42" fill="none" stroke="' + DG.soft + '" stroke-width="1.5" stroke-dasharray="5 5"/>';
+      b.pts.forEach(function (p) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="6" fill="' + b.c + '" stroke="' + DG.ink + '" stroke-opacity="0.25"/>'; });
+    });
+    s += dgText(110, 105, 'sync failures', 10.5, DG.gray) + dgText(268, 96, 'auth timeouts', 10.5, DG.gray) + dgText(186, 302, 'upgrade regressions', 10.5, DG.gray);
+    s += dgBox(392, 24, 348, 292, DG.card, DG.bd) + dgText(566, 52, 'Community detection', 14, DG.ink, 700) + dgText(566, 70, 'dense neighbourhoods in the interaction graph', 11, DG.gray);
+    var c1 = [[480,140],[520,120],[548,156],[500,176],[534,188]];
+    var c2 = [[624,220],[664,200],[692,236],[644,256]];
+    function edges(nodes, color) {
+      var e = '';
+      for (var i = 0; i < nodes.length; i++) for (var j = i + 1; j < nodes.length; j++)
+        e += '<line x1="' + nodes[i][0] + '" y1="' + nodes[i][1] + '" x2="' + nodes[j][0] + '" y2="' + nodes[j][1] + '" stroke="' + color + '" stroke-width="1.3"/>';
+      return e;
+    }
+    s += edges(c1, DG.line) + edges(c2, DG.line);
+    s += '<line x1="534" y1="188" x2="624" y2="220" stroke="' + DG.line + '" stroke-width="1.3" stroke-dasharray="4 4"/>';
+    c1.forEach(function (p) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="' + accent2 + '" stroke="' + DG.ink + '" stroke-opacity="0.25"/>'; });
+    c2.forEach(function (p) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="' + accent1 + '" stroke="' + DG.ink + '" stroke-opacity="0.25"/>'; });
+    s += '<circle cx="514" cy="156" r="58" fill="none" stroke="' + DG.coral + '" stroke-width="1.5" stroke-dasharray="6 5"/>';
+    s += '<circle cx="656" cy="228" r="48" fill="none" stroke="' + DG.coral + '" stroke-width="1.5" stroke-dasharray="6 5"/>';
+    s += dgText(514, 240, 'community 1', 10.5, DG.coral, 700) + dgText(656, 296, 'community 2', 10.5, DG.coral, 700);
+    return s + '</svg>';
+  })();
+  diagrams.foundryiq = (function () {
+    function cyl(x, y, label, fill) {
+      return '<rect x="' + x + '" y="' + (y + 8) + '" width="170" height="52" fill="' + fill + '"/>' +
+        '<ellipse cx="' + (x + 85) + '" cy="' + (y + 8) + '" rx="85" ry="12" fill="' + fill + '" stroke="' + DG.ink + '" stroke-opacity="0.12"/>' +
+        '<ellipse cx="' + (x + 85) + '" cy="' + (y + 60) + '" rx="85" ry="12" fill="' + fill + '"/>' +
+        dgText(x + 85, y + 42, label, 12.5, DG.ink, 700) + dgText(x + 85, y + 58, 'Azure AI Search', 10, DG.gray);
+    }
+    return '<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">' +
+      cyl(40, 30, 'Incidents index', accent1) + cyl(40, 130, 'KB articles index', accent2) + cyl(40, 230, 'Related records', accent3) +
+      dgArrow(212, 70, 288, 130, DG.soft) + dgArrow(212, 170, 288, 170, DG.soft) + dgArrow(212, 270, 288, 210, DG.soft) +
+      dgBox(290, 70, 220, 200, DG.card, DG.coral) + dgText(400, 102, 'Foundry IQ', 16, DG.ink, 700) + dgText(400, 122, 'knowledge base', 11.5, DG.gray) +
+      dgText(310, 158, '• agentic query planning', 12, DG.gray, null, 'start') +
+      dgText(310, 182, '• semantic ranking', 12, DG.gray, null, 'start') +
+      dgText(310, 206, '• source federation', 12, DG.gray, null, 'start') +
+      dgText(400, 248, 'governance in one place', 11, DG.coral, 700) +
+      dgArrow(510, 170, 578, 170, DG.coral) +
+      dgBox(580, 130, 150, 80, DG.ink) + dgText(655, 162, 'One retrieval', 13, '#FDFBF8', 700) + dgText(655, 180, 'endpoint', 13, '#FDFBF8', 700) + dgText(655, 198, 'MCP-compatible', 10, '#C9C9CF') +
+      '</svg>';
+  })();
+
   /* ---------- project detail pages + hash router ---------- */
   var projectPage = document.getElementById('projectPage');
   var siteMain = document.getElementById('siteMain');
@@ -616,12 +753,32 @@
     });
     wrap.appendChild(reveal(pills));
 
-    w.detail.forEach(function (d) {
-      wrap.appendChild(reveal(el('div', { style: 'display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px;' }, [
+    function dotRow(text) {
+      return el('div', { style: 'display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px;' }, [
         el('div', { style: 'width: 10px; height: 10px; border-radius: 50%; background: ' + w.color + '; margin-top: 9px; flex-shrink: 0;' }),
-        el('p', { style: 'font-size: 16px; line-height: 1.8; color: #5B5B63; margin: 0;', text: d })
-      ])));
-    });
+        el('p', { style: 'font-size: 16px; line-height: 1.8; color: #5B5B63; margin: 0;', text: text })
+      ]);
+    }
+    if (w.article) {
+      w.article.forEach(function (b) {
+        if (b.h) {
+          wrap.appendChild(reveal(el('h2', { style: "font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 32px); font-weight: 600; margin: 42px 0 14px; line-height: 1.2;", text: b.h })));
+        } else if (b.p) {
+          wrap.appendChild(reveal(el('p', { style: 'font-size: 17px; line-height: 1.85; color: #5B5B63; margin: 0 0 18px;', text: b.p })));
+        } else if (b.quote) {
+          wrap.appendChild(reveal(el('div', { style: "font-family: 'Caveat', cursive; font-size: 27px; line-height: 1.4; color: #D97F6F; border-left: 3px solid " + w.color + "; padding: 4px 0 4px 22px; margin: 30px 0;", text: b.quote })));
+        } else if (b.svg) {
+          var fig = el('div', { style: 'background: #FFFFFF; border: 1px solid #F1EAE2; border-radius: 16px; padding: 20px; margin: 30px 0 10px;' });
+          fig.innerHTML = diagrams[b.svg] || '';
+          wrap.appendChild(reveal(fig, 'pop'));
+          if (b.caption) wrap.appendChild(reveal(el('div', { style: 'font-size: 13px; line-height: 1.6; color: #8B8B92; text-align: center; margin: 10px 16px 30px;', text: b.caption })));
+        } else if (b.list) {
+          b.list.forEach(function (item) { wrap.appendChild(reveal(dotRow(item))); });
+        }
+      });
+    } else {
+      w.detail.forEach(function (d) { wrap.appendChild(reveal(dotRow(d))); });
+    }
 
     var cta = el('div', { style: 'display: flex; gap: 20px; margin-top: 52px; flex-wrap: wrap; align-items: center;' });
     var back2 = el('button', { class: 'btn-dark', style: 'border: none; cursor: pointer;', text: '← Back to all work' });
